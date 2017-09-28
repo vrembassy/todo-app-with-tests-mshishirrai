@@ -1,0 +1,24 @@
+describe("Appview", function() {
+  describe("store", function() {
+  it("should call store constructor", function() {
+var val= new todo.store();
+expect(val).to.equal(true);
+	});
+	});
+	
+	  describe("itemsview", function() {
+  it("should call itemsview constructor", function() {
+var val1= new todo.itemsview();
+expect(val1).to.equal(true);
+	});
+	});
+	
+	
+		  describe("Constructor", function() {
+  it("should return value", function() {
+var val2= new todo.appview();
+expect(val2).to.equal(true);
+	});
+	});
+	
+	
