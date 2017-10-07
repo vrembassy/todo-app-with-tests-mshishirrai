@@ -1,0 +1,17 @@
+ 
+	
+	
+	  describe("Checkbox effect", function(){
+
+        it("mark complete", function(){
+            //check the class is present
+            item.init().display().checkBoxEffect(true);
+            expect(item.$el.classList.contains('addl')).to.be.true;
+        });
+
+        it("mark incomplete", function(){
+            //check the class is absent
+           item.init().display().checkBoxEffect(false);
+            expect(item.$el.classList.contains('addl')).to.be.false;
+        })
+    });
