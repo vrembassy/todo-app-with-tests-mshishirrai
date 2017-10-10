@@ -3,9 +3,9 @@ var expect = chai.expect;
 describe("Items View test",function(){
 var items,app,item,store,$checkBox,deleteButton,name;
 beforeEach(function(){
-		 item = new todo.itemview();
-		items = new todo.itemsview();
-		app= new todo.appview();
+		 item = todo.dependency.item();
+		items = todo.dependency.items();
+		app= todo.dependency.app();
 		$div = document.createElement('DIV');
 		$checkBox = document.getElementById("buttonDesign");
 		$name = $checkBox.nextSibling;

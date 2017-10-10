@@ -7,9 +7,9 @@ describe("Item view", function() {
 	  var item,app,$checkBox,$ul,$name,items;
 
     beforeEach(function(){
-        item = new todo.itemview();
-		app = new todo.appview();
-		items = new todo.itemsview();
+        item = todo.dependency.item();
+		app = todo.dependency.app();
+		items = todo.dependency.items();
 		$ul= document.createElement("li");
 		$checkBox = document.getElementById("buttonCode");
 		$name = $checkBox.nextSibling;//..........
