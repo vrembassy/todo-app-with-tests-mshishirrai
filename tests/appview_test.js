@@ -8,10 +8,10 @@ describe("App view tests", function() {
 	var $ul,$checkbox,$delButton,$itemBox;
 
     beforeEach(function(){
-		$itemBox= document.getElementById("todoTextBox");
-		app = new todo.appview(todos);
-		items = new todo.itemsview(todos);
-		item = new todo.itemview(todos);
+		$itemBox= document.getElementById("items");//.........
+		app = new Todo.appview(todos);
+		items = new Todo.itemsview(todos);
+		item = new Todo.itemview(todos);
 		$ul = document.createElement("ul");
 		$itemBox = document.createElement("input"); 
 		$itemBox.type = "text";
@@ -44,21 +44,4 @@ describe("Add",function(){
 			expect($ul.querySelector("#textBoxId")).to.exist;
 		});
 	});
-	
-	
-	
-	describe("Add", function(){
-		
-		it("Event should fire on pressing enter button",function(){
-			$ul.appendChild($itemBox);
-			var eventObj = document.createEvent("Events");
-			eventObj.initEvent("keydown", true, true);
-			$itemBox.value = "impl";
-			eventObj.keyCode = 13;
-			$itemBox.dispatchEvent(eventObj);
-			expect($ul.querySelector("#textBoxId")).to.exist;
-			
-		});
-	
-});
 	});

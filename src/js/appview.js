@@ -1,27 +1,22 @@
-window.todo = window.todo || {};      
-window.todo.appview= (function(window){
+window.Todo = window.Todo || {};      
+window.Todo.appview= (function(window){
 'use strict';
-var tditems = {};	      													  				
-	window.tditems = tditems;
+var items,store;	      													  				
+	//window.tditems = tditems;
 //var store= new todo.store();
-var Items = new todo.itemsview();	
-	function appview(todos) {
-                   this.todos= todos;
-				   this.items= new todo.itemsview(todos);
+//var Items = new todo.itemsview();	
+	function appview(todoarray) {
+                   this.todoarray= todoarray;
+				   this.items= new Todo.itemsview(todoarray);
+				   var ulElement = document.querySelector("#disp");//...
+					var itemText = document.querySelector("#items");//.....
+				itemText.addEventListener("keydown" ,this.add, false); 
+			ulElement.addEventListener("click",this.items.assignListeners); 
+				this.display();
 				return this;
     }
 	
-	appview.prototype.init = function() {
-            var ul = document.querySelector("#disp");
-			var itm = document.querySelector("#items");
-			itm.addEventListener("keydown" ,this.add, false);       				
-			ul.addEventListener("click",Items.assignListeners);  				
-			var items = store.init();											  				
-			
-			Items.init();																
-			this.display(items);
-	};  
-	
+
 	appview.prototype.display=function($items){
 				this.items.display();	
 				return this;
@@ -35,11 +30,16 @@ var Items = new todo.itemsview();
 					alert("enter proper input");
 				}
 				else{  	
-					
-					Items.display(itemText.value);					  				
+					var itemid= "todo"+itemText.value;
+					this.store= new Todo.store(itemText.value);
+					this.store.writeone();
+					var inserteditem = this.store.readone();
+						this.items = new Todo.itemsview(inserteditem);
+						this.items.add();
+						itemText.value = null;					  				
 				}
 			}
-	};
+	}
  
                  
 			   return appview; 

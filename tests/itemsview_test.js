@@ -17,14 +17,7 @@ describe("Items view tests", function() {
         });
     });
 	
-	
-	 describe("Init", function(){
-        it("Should initialize the element", function() {
-        expect(items.init()).to.be.true;
-		
-        });
-    });
-	
+
 	
 	 describe("Display", function(){
         it("Should return the inserted item", function() {
