@@ -4,13 +4,13 @@ var expect = chai.expect;
 describe("Item view tests", function() {
     "use strict";
 
-	  var item,name,$ul;
-	  var todos= {id : "1", name: "Impl", status: "checked"};
+	  var item,name,$ul,divid;
+	  var todos= {id : "1", name: "Impl", status: "unchecked"};
 	  
     beforeEach(function(){
-        item = new todo.itemview(todos);
+        item = new Todo.itemview(todos);
 		$ul=document.createElement("ul");
-		
+		divid=todos.id;
     });
 
 	
@@ -20,12 +20,7 @@ describe("Item view tests", function() {
         });
     });
 	
-	 describe("Init", function(){
-        it("Should initialize the element", function() {
-        expect(item.init()).to.be.true;
-		
-        });
-    });
+	
 	 describe("Display", function(){
         it("Should return the html content", function() {
          expect(item.display().$el).to.be.an.instanceOf(Element);
@@ -33,15 +28,19 @@ describe("Item view tests", function() {
     });
 
 	describe("Checking delegation",function(){
-		it("Checkbox effect delegation",function(){
-		item.display().checkBoxEffect();
+		it("Normal effect", function(){
+            expect(item.$el.classList.contains('addl')).to.be.false;
+        })
+        it("Check strike effect", function(){
+			item.display().checkBoxEffect();
 			expect(item.$el.classList.contains('addl')).to.be.true;
-	//expect($name.classList.contains("addl")).to.be.true;
-		});
-		it("Striked effect",function(){
-		 expect(item.$el.classList.contains('addl')).to.be.false;
-		});
-	});
+        });
+        it("Uncheck strike effect", function(){
+			item.display().checkBoxEffect();
+			item.display().checkBoxEffect();
+			expect(item.$el.classList.contains('addl')).to.be.false;
+        });
+    });
 	
 	
 	describe("Remove", function(){
@@ -52,14 +51,14 @@ describe("Item view tests", function() {
     });
 	
 	describe("Event handlers", function(){
-        it("completion click event", function(){
+        it("Completion click event", function(){
 
             $ul.append(item.display().checkBoxEffect().$el);
             $ul.querySelector(".checkButton").click();
             expect(item.$el.classList.contains('addl')).to.be.true;
             
         });
-        it("remove click event ", function(){
+        it("Remove click event ", function(){
 
             $ul.append(item.display().$el);
             $ul.querySelector(".deletestyle").click();

@@ -1,8 +1,15 @@
-window.todo = window.todo || {};      
-window.todo.main= (function(){
+window.Todo = window.Todo || {};      
+window.Todo.main= (function(){
 'use strict';
  document.addEventListener("DOMContentLoaded", function(event){
-				var app=new todo.appview();
-				app.init();
+	 
+				var store=new Todo.store();
+				var items = store.readMany();
+									
+				for(var i=0;i<items.length;i++){
+				
+				var app=new Todo.appview(items[i]);
+				
+				} 
  });	           
 })();
